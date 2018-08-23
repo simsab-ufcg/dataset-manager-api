@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/simsab-ufcg/simsab-dataset-manager-api#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
     "morgan": "^1.9.0",
     "pg": "*"
   },
