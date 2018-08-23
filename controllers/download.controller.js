@@ -14,11 +14,18 @@ exports.downloadFile = (req, res, next) => {
         if(err)
             throw err;
         if(results.rows.length == 1){
-            fs.writeFile(req.params.name + extension, results.rows[0].img, (err) => {
+            var fileName = req.params.name + extension;
+            fs.writeFile(fileName, results.rows[0].img, (err) => {
                 if(err)
                     throw err;
                 console.log('file created');
-                res.download(req.params.name + extension);
+                res.download(fileName, (err) => {
+                    fs.unlink(fileName, (err) => {
+                        if(err)
+                            throw err;
+                        console.log('file deleted');
+                    })
+                });
             });
         } else {
             res.send('Image not found');
