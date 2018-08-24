@@ -12,6 +12,6 @@ var controller = require('../controllers/upload.controller');
  */
 
 router.get('/files', controller.updateFiles);
-
+router.post('/ftp', controller.connectFtp);
 
 module.exports = router;
