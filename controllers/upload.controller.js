@@ -6,10 +6,12 @@ exports.updateFiles = (req, res, next) => {
 }
 
 exports.connectFtp = (req, res, next) => {
-    var config = req.body;
+    var config = req.body.config;
+    var paths = req.body.paths;
+
     ftp.connect(config);
 
-    ftp.upload("opa.txt", "/home/filipetrm/Desktop/novo_nome.txt", function(err){
+    ftp.upload(paths[0], paths[1], function(err){
         if (err) throw err;
         ftp.close();
     });
