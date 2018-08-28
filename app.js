@@ -11,6 +11,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 var app = express();
 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(morgan('dev'));
 app.use('/api', router);
 
