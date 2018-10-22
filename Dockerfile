@@ -1,15 +1,18 @@
 FROM node:8.11.4
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/node/app
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/node/app
 
-COPY package.json ./
-
-RUN npm install
+# Install deps
+COPY ./package* ./
+RUN npm install && \
+    npm cache clean --force
 
 COPY . .
 
+# Expose ports (for orchestrators and dynamic reverse proxies)
 EXPOSE 3000
 
-RUN npm run dev_server
+# Start the app
+CMD npm start
